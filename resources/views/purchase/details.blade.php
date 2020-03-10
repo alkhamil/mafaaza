@@ -46,4 +46,7 @@
             </table>
         </div>
     </div>
+    <div class="row mt-2">
+        <a href="{{ route('purchase') }}" class="nav-link">Back to list</a>
+    </div>
 @endsection

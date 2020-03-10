@@ -6,25 +6,28 @@
             <h2>Isi data dengan benar !</h2>
         </div>
     </div>
+    @php
+        $user = Auth::user();
+    @endphp
     <div class="row">
         <div class="col-md-6">
             <form action="{{ route('checkout.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" value="{{ $user->name }}">
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="text" class="form-control" name="email">
+                    <input type="text" class="form-control" name="email" value="{{ $user->email }}">
                 </div>
                 <div class="form-group">
                     <label>Telepon</label>
-                    <input type="number" class="form-control" name="phone">
+                    <input type="number" class="form-control" name="phone" required>
                 </div>
                 <div class="form-group">
                     <label>Alamat</label>
-                    <textarea name="address" class="form-control" cols="10" rows="5"></textarea>
+                    <textarea name="address" class="form-control" cols="10" rows="5" required></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Continue</button>

@@ -21,32 +21,39 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    @if (!Auth::check())
-                        <li class="nav-item mr-2">
-                            <a href="{{ route('purchase') }}" class="btn btn-info">
-                                Purchase
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-primary" href="{{ route('view.cart') }}">CART
-                                @if ($cart !== null)
-                                    @if (count($cart) > 0)
-                                        {{ count($cart) }}
+                    @if (Auth::check())
+                        @if (Auth::user()->role === 0)
+                            <li class="nav-item mr-2">
+                                <a href="{{ route('purchase') }}" class="btn btn-info">
+                                    Purchase
+                                </a>
+                            </li>
+                            <li class="nav-item mr-2">
+                                <a class="btn btn-primary" href="{{ route('view.cart') }}">CART
+                                    @if ($cart !== null)
+                                        @if (count($cart) > 0)
+                                            {{ count($cart) }}
+                                        @else 
+                                            0
+                                        @endif
                                     @else 
                                         0
                                     @endif
-                                @else 
-                                    0
-                                @endif
-                            </a>
-                        </li>
-                    @else
-                        <li class="nav-item mr-2">
-                            <a href="{{ route('list.order.admin') }}" class="btn btn-info">Orders</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
-                        </li>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
+                            </li>
+                        @else
+                            <li class="nav-item mr-2">
+                                <a href="{{ route('list.order.admin') }}" class="btn btn-info">Orders</a>
+                            </li> 
+                            <li class="nav-item">
+                                <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
+                            </li>
+                        @endif
+                    @else 
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
                     @endif
                 </ul>
             </div>

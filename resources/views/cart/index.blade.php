@@ -48,8 +48,10 @@
                 </a>
             </div>
         @else 
-            <div class="alert alert-danger">
-                Kerangjang anda kosong !
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    Kerangjang anda kosong. silahkan order kembali!
+                </div>
             </div>
         @endif
     </div>

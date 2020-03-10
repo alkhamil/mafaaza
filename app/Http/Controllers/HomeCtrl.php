@@ -29,6 +29,9 @@ class HomeCtrl extends Controller
                 if ($user->role === 1) {
                     Auth::attempt(['email' => $email, 'password' => $password]);
                     return redirect('/admin/list-order');
+                }elseif ($user->role === 0) {
+                    Auth::attempt(['email' => $email, 'password' => $password]);
+                    return redirect('/');
                 }else {
                     $request->session()->flash('error', 'Anda tidak punya otorisasi!');
                     return back();
@@ -70,7 +73,7 @@ class HomeCtrl extends Controller
         $cart = $request->session()->get('cart');
         $order = new Order;
         $order->code = 'ODR-'.time();
-        $order->user_id = 1;
+        $order->user_id = Auth::user()->id;
         $order->status = 0;
         if ($order->save()) {
             $total = 0;
