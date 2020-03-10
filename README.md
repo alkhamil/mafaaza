@@ -10,11 +10,13 @@ Guide :
 
 Customer :
 http://localhost:8000/
-customer@customer.com
-customer
+
+user : customer@customer.com
+pass : customer
 
 Admin : 
 http://localhost:8000/admin/list-order
-admin@admin.com
-admin
+
+user : admin@admin.com
+pass : admin
 
